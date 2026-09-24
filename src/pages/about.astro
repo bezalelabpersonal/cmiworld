@@ -32,6 +32,16 @@ const { page } = await fetchAPI({
 								mediaItemUrl
 							}
 						}
+						fourthImage {
+							node {
+								mediaItemUrl
+							}
+						}
+						fifthImage {
+							node {
+								mediaItemUrl
+							}
+						}
 					}
 					anUpdateFromBudapest {
 						placements
@@ -81,6 +91,8 @@ const { page } = await fetchAPI({
 		}
 	`,
 });
+
+const familyImages = [page.about.topSection.fourthImage, page.about.topSection.fifthImage].map((field) => getMediaUrl(field)).filter(Boolean);
 ---
 
 <Layout title="Jim & Brenda Puhr">
@@ -158,6 +170,15 @@ const { page } = await fetchAPI({
         </p>
       </div>
     </section>
+    {
+      familyImages.length > 0 && (
+        <section class="grid md:grid-cols-2 gap-6 xl:gap-12 pt-12 md:pt-16">
+          {familyImages.map((src) => (
+            <Image src={src} width={590} height={710} alt="The Puhr family" class="w-full h-[420px] md:h-[480px] lg:h-[640px] object-cover" />
+          ))}
+        </section>
+      )
+    }
     <section class="py-20 md:py-25">
       <h2 class="uppercase text-xl md:text-2xl mb-6">
         An Update from <span class="text-gray-3"> {page.about.anUpdateFromBudapest.placements}</span>
