@@ -2,7 +2,7 @@
 import { getImage } from 'astro:assets';
 import heroImg from '@/assets/home/hero.jpg';
 import HeroVideo from './HeroVideo';
-const optimizedBackground = await getImage({ src: heroImg, format: 'webp' });
+const optimizedBackground = await getImage({ src: heroImg, format: 'webp', quality: 90 });
 ---
 
 <div class="container">
